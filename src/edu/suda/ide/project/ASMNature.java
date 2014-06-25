@@ -1,4 +1,4 @@
-package edu.suda.ide;
+package edu.suda.ide.project;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;

@@ -108,7 +108,7 @@
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
-               class="edu.suda.ide.ASMNature">
+               class="edu.suda.ide.project.ASMNature">
          </run>
       </runtime>
    </extension>
@@ -118,7 +118,7 @@
          point="org.eclipse.core.resources.builders">
       <builder>
          <run
-               class="edu.suda.ide.ASMBuilder">
+               class="edu.suda.ide.project.ASMBuilder">
          </run>
       </builder>
    </extension>
