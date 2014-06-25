@@ -34,14 +34,14 @@ public class ASMBuilder extends IncrementalProjectBuilder {
 		if (delta == null) {
 			fullBuild(project, monitor);
 		} else {
-			//System.out.println("Doing an incremental build");
+			System.out.println("Doing an incremental build");
 			delta.accept(new ASMVistor());
 		}
 	}
 
 	private void fullBuild(IProject project, IProgressMonitor monitor)
 			throws CoreException {
-		//System.out.println("Doing a full build");
+		System.out.println("Doing a full build");
 		project.accept(new ASMVistor(),IResource.NONE);
 	}
 
