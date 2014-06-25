@@ -14,7 +14,6 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	private IWorkbenchAction New,Import,Export,Exit,saveAction,saveAllAction;
 	private IWorkbenchAction Redo,Undo,Copy,Paste,Cut,Find;
-	//private IWorkbenchAction Build;
 	private IWorkbenchAction HelpContents;
 
 	public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
@@ -59,6 +58,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		
 		Find = ActionFactory.FIND.create(window);
 		register(Find);
+		
 		
 		HelpContents = ActionFactory.HELP_CONTENTS.create(window);
 	}
