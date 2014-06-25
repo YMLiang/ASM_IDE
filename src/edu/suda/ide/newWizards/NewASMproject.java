@@ -36,7 +36,7 @@ public class NewASMproject extends Wizard implements INewWizard{
 
 	    page1 = new WizardNewProjectCreationPage("ASM Project");
 	    page1.setTitle("ASM Project");
-	    page1.setImageDescriptor(Activator.getImageDescriptor("icons/wizards/newWizard.gif"));
+	    page1.setImageDescriptor(Activator.getImageDescriptor("icons/newWizard.gif"));
 	    page1.setDescription("Create a new ASM project");
 
 	    addPage(page1);

@@ -44,7 +44,7 @@ public void addPages() {
     }
   };
   page1.setTitle("ASM File");
-  page1.setImageDescriptor(Activator.getImageDescriptor("icons/wizards/newWizard.gif"));
+  page1.setImageDescriptor(Activator.getImageDescriptor("icons/newWizard.gif"));
   page1.setDescription("New a ASM File");
 
   

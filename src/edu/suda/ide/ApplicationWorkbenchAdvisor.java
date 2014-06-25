@@ -31,7 +31,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 		IDE.registerAdapters();
 		
 		getWorkbenchConfigurer().declareImage(IDE.SharedImages.IMG_OBJ_PROJECT, 
-	    		Activator.getImageDescriptor("icons/new_asm_project.gif"), true);  
+	    		Activator.getImageDescriptor("icons/16/new_asm_project.gif"), true);  
 		
 	}
 }
