@@ -23,7 +23,7 @@
          point="org.eclipse.ui.views">
       <view
             class="org.eclipse.ui.navigator.CommonNavigator"
-            icon="icons/16/asm.gif"
+            icon="icons/asm.gif"
             id="edu.suda.ide.projectview"
             name="Assembler Project Explorer">
       </view>
@@ -53,7 +53,7 @@
       <wizard
             category="edu.suda.ide.new.category"
             class="edu.suda.ide.newWizards.NewASMfile"
-            icon="icons/16/asm.gif"
+            icon="icons/asm.gif"
             id="edu.suda.ide.newfile.wizard"
             name="Assembler File">
       </wizard>
@@ -78,7 +78,7 @@
                id="edu.suda.ide.toolbar">
             <command
                   commandId="edu.suda.ide.command.new"
-                  icon="icons/16/asm.gif"
+                  icon="icons/asm.gif"
                   style="push">
             </command>
             <command
