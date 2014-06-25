@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="edu.suda.ide.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="edu.suda.ide.Perspective"
+            id="edu.suda.ide.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            icon="icons/asm.gif"
+            id="edu.suda.ide.projectview"
+            name="Assembler Project Explorer">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+       <viewerContentBinding 
+            viewerId="edu.suda.ide.projectview">
+          <includes>
+       	     <contentExtension pattern="org.eclipse.ui.navigator.resourceContent" />		       	      
+	         <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+	         <contentExtension pattern="org.eclipse.ui.navigator.resources.linkHelper"/>
+             <contentExtension pattern="org.eclipse.ui.navigator.resources.workingSets"/>
+          </includes>
+       </viewerContentBinding>
+        <viewerActionBinding
+            viewerId="edu.suda.ide.projectview">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.ui.navigator.resources.*">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="edu.suda.ide.new.category"
+            class="edu.suda.ide.newWizards.NewASMfile"
+            icon="icons/asm.gif"
+            id="edu.suda.ide.newfile.wizard"
+            name="Assembler File">
+      </wizard>
+      <wizard
+            category="edu.suda.ide.new.category"
+            class="edu.suda.ide.newWizards.NewASMproject"
+            icon="icons/new_asm_project.gif"
+            id="edu.suda.ide.newproject.wizard"
+            name="Assembler Project"
+            project="true">
+      </wizard>
+      <category
+            id="edu.suda.ide.new.category"
+            name="Assembler">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?before=additions">
+         <toolbar
+               id="edu.suda.ide.toolbar">
+            <command
+                  commandId="edu.suda.ide.command.new"
+                  icon="icons/asm.gif"
+                  style="push">
+            </command>
+            <command
+                  commandId="edu.suda.ide.command.save"
+                  icon="icons/alt_about.gif"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.ui.internal.handlers.WizardHandler$New"
+            id="edu.suda.ide.command.new"
+            name="New">
+      </command>
+      <command
+            defaultHandler="org.eclipse.ui.internal.handlers.SaveHandler"
+            id="edu.suda.ide.command.save"
+            name="Save">
+      </command>
+   </extension>
+   <extension
+         id="edu.suda.ide.nature"
+         name="ASMNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="edu.suda.ide.ASMNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         id="edu.suda.ide.builder"
+         name="ASMBuild"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="edu.suda.ide.ASMBuilder">
+         </run>
+      </builder>
+   </extension>
+
+</plugin>
