@@ -130,5 +130,25 @@
             natureId="edu.suda.ide.nature">
       </image>
    </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="edu.suda.ide.application"
+            name="RadioFlex IDE">
+         <property
+               name="appName"
+               value="RadioFlex IDE">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.ui.internal.ide.dialogs.ResourceInfoPage"
+            id="edu.suda.ide.page1"
+            name="ResourceInfo">
+      </page>
+   </extension>
 
 </plugin>

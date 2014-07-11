@@ -14,7 +14,9 @@ import org.eclipse.ui.application.IActionBarConfigurer;
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	private IWorkbenchAction New,Import,Export,Exit,saveAction,saveAllAction;
 	private IWorkbenchAction Redo,Undo,Copy,Paste,Cut,Find;
+	private IWorkbenchAction properties;
 	private IWorkbenchAction HelpContents;
+	
 
 	public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
 		super(configurer);
@@ -59,8 +61,12 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		Find = ActionFactory.FIND.create(window);
 		register(Find);
 		
+		properties = ActionFactory.PROPERTIES.create(window);
+		register(properties);
 		
 		HelpContents = ActionFactory.HELP_CONTENTS.create(window);
+		register(HelpContents);
+		
 	}
 
 	protected void fillMenuBar(IMenuManager menuBar) {
@@ -69,13 +75,16 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		MenuManager editMenu = new MenuManager("&Edit",
 				IWorkbenchActionConstants.M_EDIT);
 		MenuManager debugMeun = new MenuManager("Debug");
+		MenuManager projectMenu = new MenuManager("Project",IWorkbenchActionConstants.M_PROJECT);
 		MenuManager helpMenu = new MenuManager("&Help",
 				IWorkbenchActionConstants.M_HELP);
+		
 		
 
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
 		menuBar.add(debugMeun);
+		menuBar.add(projectMenu);
      	menuBar.add(helpMenu);
 
 		fileMenu.add(New);
@@ -91,6 +100,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		editMenu.add(Paste);
 		editMenu.add(Cut);
 		editMenu.add(Find);
+		
+		projectMenu.add(properties);
 		
 		helpMenu.add(HelpContents);
 
