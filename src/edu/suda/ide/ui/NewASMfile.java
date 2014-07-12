@@ -1,4 +1,4 @@
-package edu.suda.ide.newWizards;
+package edu.suda.ide.ui;
 
 
 import org.eclipse.core.resources.IFile;

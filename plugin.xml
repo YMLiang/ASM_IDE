@@ -52,14 +52,14 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="edu.suda.ide.new.category"
-            class="edu.suda.ide.newWizards.NewASMfile"
+            class="edu.suda.ide.ui.NewASMfile"
             icon="icons/asm.gif"
             id="edu.suda.ide.newfile.wizard"
             name="Assembler File">
       </wizard>
       <wizard
             category="edu.suda.ide.new.category"
-            class="edu.suda.ide.newWizards.NewASMproject"
+            class="edu.suda.ide.ui.NewASMproject"
             icon="icons/16/new_asm_project.gif"
             id="edu.suda.ide.newproject.wizard"
             name="Assembler Project"
