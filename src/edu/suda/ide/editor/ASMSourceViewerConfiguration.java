@@ -57,7 +57,7 @@ public class ASMSourceViewerConfiguration extends SourceViewerConfiguration {
 		reconciler.setDamager(dr, Constants.PARTITION_COMMENT);
 		reconciler.setRepairer(dr, Constants.PARTITION_COMMENT);
 
-		scanner[2] = new PropertyChangeRuleBaseScanner(editor,
+		scanner[1] = new PropertyChangeRuleBaseScanner(editor,
 				Constants.PREFERENCES_TEXTCOLOR_STRING);
 		dr = new DefaultDamagerRepairer(scanner[1]);
 		reconciler.setDamager(dr, Constants.PARTITION_STRING);

@@ -96,7 +96,20 @@ public class ASMCodeScanner extends RuleBasedScanner implements
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		// TODO Auto-generated method stub
+		if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION)) {
+			instructionToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		} else if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_SEGMENT)) {
+			segmentToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		}
 
+		editor.refreshSourceViewer();
 	}
 }
