@@ -6,6 +6,7 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
+import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
@@ -27,6 +28,10 @@ public class ASMEditor extends TextEditor {
 		super.initializeEditor();
 		setSourceViewerConfiguration(new ASMSourceViewerConfiguration(this));
 	}
+	
+	protected void initializeKeyBindingScopes() {
+	    setKeyBindingScopes(new String[] { "edu.suda.ide.editorScope" });
+	  }
 
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
@@ -60,25 +65,5 @@ public class ASMEditor extends TextEditor {
 		if (svc instanceof ASMSourceViewerConfiguration) {
 			((ASMSourceViewerConfiguration) svc).dispose();
 		}
-	}
-
-	public void createPartControl(Composite parent) {
-		super.createPartControl(parent);
-	}
-
-	protected ISourceViewer createSourceViewer(Composite parent,
-			IVerticalRuler ruler, int styles) {
-		ISourceViewer viewer = new ProjectionViewer(parent, ruler,
-				getOverviewRuler(), isOverviewRulerVisible(), styles);
-
-		// ensure decoration support has been created and configured.
-		getSourceViewerDecorationSupport(viewer);
-
-		viewer.setDefaultPrefixes(new String[] { ";" },
-				IDocument.DEFAULT_CONTENT_TYPE);
-		viewer.setDefaultPrefixes(new String[] { ";" },
-				Constants.PARTITION_COMMENT);
-
-		return viewer;
 	}
 }

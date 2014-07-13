@@ -1,12 +1,20 @@
 package edu.suda.ide.ui;
 
+import org.eclipse.osgi.util.NLS;
+
+
 /**
  * Class which holds the message constants.
+ * 
  * @author YMLiang
- *
+ * 
  */
 public class Messages {
-	
+	/**
+	 * Name of the message bundle.
+	 */
+	private static final String BUNDLE_NAME = "edu.suda.ide.messages";
+
 	/**
 	   * Name of the string text style.
 	   */
@@ -51,5 +59,10 @@ public class Messages {
 	   * Italic-Text.
 	   */
 	  public static String ITALIC_TEXT;
+	
+	// Initialize the constants.
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+	}
 
 }

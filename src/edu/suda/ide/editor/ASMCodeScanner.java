@@ -68,6 +68,15 @@ public class ASMCodeScanner extends RuleBasedScanner implements
 		setRules(rules.toArray(new IRule[] {}));
 	}
 
+	
+	/**
+	 * Disposes the PropertyChangeListener from the PreferenceStore.
+	 */
+	public void dispose() {
+		Activator.getDefault().getPreferenceStore()
+				.removePropertyChangeListener(this);
+	}
+	
 	/**
 	 * Create all Tokens.
 	 * 
@@ -86,13 +95,6 @@ public class ASMCodeScanner extends RuleBasedScanner implements
 						.getString(Constants.PREFERENCES_TEXTCOLOR_SEGMENT)));
 	}
 
-	/**
-	 * Disposes the PropertyChangeListener from the PreferenceStore.
-	 */
-	public void dispose() {
-		Activator.getDefault().getPreferenceStore()
-				.removePropertyChangeListener(this);
-	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
