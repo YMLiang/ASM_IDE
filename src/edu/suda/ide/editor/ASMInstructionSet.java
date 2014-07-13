@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import edu.suda.ide.Activator;
+import edu.suda.ide.ui.Constants;
 
 /**
  * Load a file of instructions, which are use in the editor
@@ -117,7 +118,7 @@ public final class ASMInstructionSet {
 			Activator
 					.getDefault()
 					.getLog()
-					.log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+					.log(new Status(Status.ERROR, Constants.PLUGIN_ID,
 							Status.OK,
 							"Error while loading ASM Instruction-Set.", e));
 		}

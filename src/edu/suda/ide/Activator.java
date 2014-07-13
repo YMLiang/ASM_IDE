@@ -8,16 +8,18 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import edu.suda.ide.ui.Constants;
+import edu.suda.ide.ui.TextAttributeConverter;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
-
-	// The plug-in ID
-	public static final String PLUGIN_ID = "edu.suda.ide"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -70,7 +72,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+		return imageDescriptorFromPlugin(Constants.PLUGIN_ID, path);
 	}
 
 	/**
@@ -104,8 +106,26 @@ public class Activator extends AbstractUIPlugin {
 
 		return result;
 	}
-	
-	protected void initializeDefaultPreferences(IPreferenceStore store){
-		
+
+	protected void initializeDefaultPreferences(IPreferenceStore store) {
+		Display display = Display.getCurrent();
+
+		String textAttribute = TextAttributeConverter
+				.textAttributesToPreferenceData(new Color(display, 0, 128, 0),
+						false, false);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_STRING, textAttribute);
+
+		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
+				new Color(display, 139, 0, 255), false, true);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_COMMENT, textAttribute);
+
+		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
+				new Color(display, 255, 0, 0), true, false);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION,
+				textAttribute);
+
+		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
+				new Color(display, 128, 64, 0), true, false);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_SEGMENT, textAttribute);
 	}
 }

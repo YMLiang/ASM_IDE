@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 
-import edu.suda.ide.Activator;
+import edu.suda.ide.ui.Constants;
 
 public class ASMVistor implements IResourceProxyVisitor, IResourceDeltaVisitor {
 	public boolean visit(IResourceProxy proxy) throws CoreException {
@@ -66,7 +66,7 @@ public class ASMVistor implements IResourceProxyVisitor, IResourceDeltaVisitor {
 
 			} catch (IOException e) {
 				throw new CoreException(new Status(Status.ERROR,
-						Activator.PLUGIN_ID, "Failed to generate resource", e));
+						Constants.PLUGIN_ID, "Failed to generate resource", e));
 			}
 		}
 	}

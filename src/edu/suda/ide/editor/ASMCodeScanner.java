@@ -1,57 +1,102 @@
 package edu.suda.ide.editor;
 
 import java.util.ArrayList;
-import org.eclipse.jface.text.TextAttribute;
-import org.eclipse.jface.text.rules.EndOfLineRule;
+import java.util.HashMap;
+
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.rules.IRule;
-import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
-import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
-import org.eclipse.jface.text.rules.WhitespaceRule;
-import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.swt.graphics.Device;
 
-public class ASMCodeScanner extends RuleBasedScanner {
-	private static String[] fgkeywords = { "include", "define", "start_loop",
-			"delay_outer", "delay_inner" };
-	private static String[] fginstructions = { "loadi", "out", "move", "bne",
-			"addi", "cpi" };
+import edu.suda.ide.Activator;
+import edu.suda.ide.ui.Constants;
+import edu.suda.ide.ui.TextAttributeConverter;
 
-	public ASMCodeScanner(ASMColorProvider provider) {
+/**
+ * RuleBasedScanner for the ASMEditor.
+ * 
+ * @author YMLiang
+ * 
+ */
+public class ASMCodeScanner extends RuleBasedScanner implements
+		IPropertyChangeListener {
 
-		IToken keyword = new Token(new TextAttribute(
-				provider.getColor(ASMColorProvider.KEYWORD)));
-		IToken instruction = new Token(new TextAttribute(
-				provider.getColor(ASMColorProvider.INSTRUCTION)));
-		IToken string = new Token(new TextAttribute(
-				provider.getColor(ASMColorProvider.STRING)));
-		IToken comment = new Token(new TextAttribute(
-				provider.getColor(ASMColorProvider.SINGLE_LINE_COMMENT)));
-		IToken other = new Token(new TextAttribute(
-				provider.getColor(ASMColorProvider.DEFAULT)));
+	private Token instructionToken;
+
+	private Token segmentToken;
+
+	private ASMEditor editor;
+
+	/**
+	 * The constructor.
+	 * 
+	 * @param editor
+	 *            The underlying ASMEditor for the CodeScanner.
+	 */
+	public ASMCodeScanner(final ASMEditor editor) {
+		this.editor = editor;
 
 		ArrayList<IRule> rules = new ArrayList<IRule>();
+		createTokens(editor.getSite().getShell().getDisplay());
 
-		// Add rule for single line comments
-		rules.add(new EndOfLineRule(";", comment));
+		Activator.getDefault().getPreferenceStore()
+				.addPropertyChangeListener(this);
 
-		// Add rule for strings
-		rules.add(new SingleLineRule("\"", "\"", string, '\\'));
-		rules.add(new SingleLineRule("'", "'", string, '\\'));
+		WordRuleCaseInsensitive wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> instructions = ASMInstructionSet
+				.getInstructions();
 
-		// Add generic whitespace rule.
-		rules.add(new WhitespaceRule(new MyWhitespaceDetector()));
-
-		// Add word rule for keywords and instructions.
-		WordRule wordRule = new WordRule(new MyWordDetector(), other);
-		for (int i = 0; i < fgkeywords.length; i++)
-			wordRule.addWord(fgkeywords[i], keyword);
-		for (int i = 0; i < fginstructions.length; i++)
-			wordRule.addWord(fginstructions[i], instruction);
+		if (instructions != null) {
+			for (String instruction : instructions.keySet()) {
+				wordRule.addWord(instruction, instructionToken);
+			}
+		}
 		rules.add(wordRule);
 
-		IRule[] result = new IRule[rules.size()];
-		rules.toArray(result);
-		setRules(result);
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> segments = ASMInstructionSet.getSegments();
+		if (segments != null) {
+			for (String segment : segments.keySet()) {
+				wordRule.addWord(segment, segmentToken);
+			}
+		}
+		rules.add(wordRule);
+
+		setRules(rules.toArray(new IRule[] {}));
+	}
+
+	/**
+	 * Create all Tokens.
+	 * 
+	 * @param device
+	 *            The device is needed for the color of the Tokens.
+	 */
+	private void createTokens(Device device) {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+
+		instructionToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION)));
+
+		segmentToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_SEGMENT)));
+	}
+
+	/**
+	 * Disposes the PropertyChangeListener from the PreferenceStore.
+	 */
+	public void dispose() {
+		Activator.getDefault().getPreferenceStore()
+				.removePropertyChangeListener(this);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 }
