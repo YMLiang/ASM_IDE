@@ -151,14 +151,6 @@
       </page>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="edu.suda.ide.ui.PreferencesGeneral"
-            id="edu.suda.ide.preference.general"
-            name="ASM">
-      </page>
-   </extension>
-   <extension
          point="org.eclipse.ui.editors">
       <editor
             class="edu.suda.ide.editor.ASMEditor"
