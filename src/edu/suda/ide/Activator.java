@@ -1,5 +1,12 @@
 package edu.suda.ide;
 
+import java.net.URL;
+import java.util.Enumeration;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -14,7 +21,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */
@@ -23,7 +30,10 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
+	 * )
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -32,7 +42,10 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
+	 * )
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -41,7 +54,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
@@ -49,13 +62,50 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
-	 *
-	 * @param path the path
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path
+	 * 
+	 * @param path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns the absolute path of a entry from the plugin's directory.
+	 * 
+	 * @param entry
+	 *            a file or directory (don't use "dir1\dir2" or "dir1\file1")
+	 * @return Returns the path from the plug-in.
+	 */
+	public static String getFilePathFromPlugin(String entry) {
+		URL url = null;
+		IPath path = null;
+		String result = "";
+
+		Enumeration<URL> enu = Activator.getDefault().getBundle()
+				.findEntries("/", entry, true);
+		if (enu.hasMoreElements()) {
+			url = (URL) enu.nextElement();
+		}
+
+		if (url == null) {
+			return "";
+		}
+
+		try {
+			path = new Path(FileLocator.toFileURL(url).getPath());
+			result = path.makeAbsolute().toOSString();
+		} catch (Exception e) {
+			result = "";
+		}
+
+		return result;
+	}
+	
+	protected void initializeDefaultPreferences(IPreferenceStore store){
+		
 	}
 }

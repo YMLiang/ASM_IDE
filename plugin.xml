@@ -161,5 +161,13 @@
             name="ASM Editor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="edu.suda.ide.ui.PreferencesGeneral"
+            id="edu.suda.ide.page.asm"
+            name="Assembler">
+      </page>
+   </extension>
 
 </plugin>
