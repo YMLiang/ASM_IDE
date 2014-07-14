@@ -11,68 +11,73 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 import edu.suda.ide.Activator;
 
-
-
-public class NewASMproject extends Wizard implements INewWizard{
+/**
+ * The new ASM project wizard
+ * 
+ * @author YMLiang
+ * 
+ */
+public class NewASMproject extends Wizard implements INewWizard {
 
 	/**
-	   * The first page of the wizard.
-	   */
-	  private WizardNewProjectCreationPage page1;
+	 * The first page of the wizard.
+	 */
+	private WizardNewProjectCreationPage page1;
 
-	  /**
-	   * The constructor.
-	   */
-	  public NewASMproject() {
-	    super();
-	    setWindowTitle("Create a new ASM project");
-	  }
+	/**
+	 * The constructor.
+	 */
+	public NewASMproject() {
+		super();
+		setWindowTitle(Messages.WIZARD_NEW_PROJECT_TITLE);
+	}
 
-	  /**
-	   * {@inheritDoc}
-	   */
-	  public void addPages() {
-	    super.addPages();
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addPages() {
+		super.addPages();
 
-	    page1 = new WizardNewProjectCreationPage("ASM Project");
-	    page1.setTitle("ASM Project");
-	    page1.setImageDescriptor(Activator.getImageDescriptor("icons/newWizard.gif"));
-	    page1.setDescription("Create a new ASM project");
+		page1 = new WizardNewProjectCreationPage(
+				Messages.WIZARD_NEW_FILE_PAGE1_TITLE);
+		page1.setTitle(Messages.WIZARD_NEW_FILE_PAGE1_TITLE);
+		page1.setImageDescriptor(Constants.WIZARD_NEW);
+		page1.setDescription(Messages.WIZARD_NEW_PROJECT_DESCRIPTION);
 
-	    addPage(page1);
-	  }
+		addPage(page1);
+	}
 
-	  /**
-	   * {@inheritDoc}
-	   */
-	  public boolean performFinish() {
-	    try {
-	      IProject project = page1.getProjectHandle();
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean performFinish() {
+		try {
+			IProject project = page1.getProjectHandle();
 
-	      project.create(null);
-	      project.open(null);
-	      
-	      //assign a nature  to a project  by updating the
-	      //project's description to include the nature
-	      
-          IProjectDescription description = project.getDescription();
-          String[] natures = description.getNatureIds();
-          String[] newNatures = new String[natures.length + 1];
-          System.arraycopy(natures, 0, newNatures, 0, natures.length);
-          newNatures[natures.length] = "edu.suda.ide.nature";
-          description.setNatureIds(newNatures);
-          project.setDescription(description, null);
+			project.create(null);
+			project.open(null);
 
-	    } catch (CoreException e) {
-	      Activator.getDefault().getLog().log(e.getStatus());
-	    }
-	    return true;
-	  }
+			// assign a nature to a project by updating the
+			// project's description to include the nature
 
-	  /**
-	   * {@inheritDoc}
-	   */
-	  public void init(IWorkbench workbench, IStructuredSelection selection) {
-	  }
+			IProjectDescription description = project.getDescription();
+			String[] natures = description.getNatureIds();
+			String[] newNatures = new String[natures.length + 1];
+			System.arraycopy(natures, 0, newNatures, 0, natures.length);
+			newNatures[natures.length] = Constants.NATURE_ID;
+			description.setNatureIds(newNatures);
+			project.setDescription(description, null);
+
+		} catch (CoreException e) {
+			Activator.getDefault().getLog().log(e.getStatus());
+		}
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	}
 
 }

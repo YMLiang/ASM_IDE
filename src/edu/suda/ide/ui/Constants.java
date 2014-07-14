@@ -1,5 +1,9 @@
 package edu.suda.ide.ui;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+
+import edu.suda.ide.Activator;
+
 /**
  * Class which holds several constants.
  * 
@@ -9,11 +13,20 @@ package edu.suda.ide.ui;
 public class Constants {
 
 	// Important IDs
-
 	/**
 	 * The Plug-in ID.
 	 */
 	public static final String PLUGIN_ID = "edu.suda.ide";
+
+	/**
+	 * The Nature ID.
+	 */
+	public static final String NATURE_ID = "edu.suda.ide.nature";
+
+	/**
+	 * The Build ID.
+	 */
+	public static final String BUILDER_ID = "edu.suda.ide.builder";
 
 	/**
 	 * Preference key for string text style preference keys.
@@ -45,4 +58,9 @@ public class Constants {
 	 */
 	public static final String PARTITION_COMMENT = "partion.comment";
 
+	/**
+	 * Icon for the new wizard.
+	 */
+	public static final ImageDescriptor WIZARD_NEW = Activator
+			.getImageDescriptor("icons/newWizard.gif");
 }

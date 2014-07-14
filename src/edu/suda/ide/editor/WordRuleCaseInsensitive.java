@@ -8,8 +8,9 @@ import org.eclipse.jface.text.rules.WordRule;
 
 /**
  * A special WordRule, which ignores the case of a given word.
+ * 
  * @author YMLiang
- *
+ * 
  */
 public class WordRuleCaseInsensitive extends WordRule {
 	/**

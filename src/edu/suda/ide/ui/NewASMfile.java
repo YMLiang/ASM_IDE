@@ -1,6 +1,5 @@
 package edu.suda.ide.ui;
 
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -8,67 +7,68 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
-import edu.suda.ide.Activator;
-
-
+/**
+ * The new ASM file wizard.
+ * @author YMLiang
+ *
+ */
 public class NewASMfile extends Wizard implements INewWizard {
-/**
- * The first page of the wizard.
- */
-private WizardNewFileCreationPage page1;
+	/**
+	 * The first page of the wizard.
+	 */
+	private WizardNewFileCreationPage page1;
 
+	private IStructuredSelection selection;
 
-private IStructuredSelection selection;
+	/**
+	 * The constructor.
+	 */
+	public NewASMfile() {
+		super();
+		setWindowTitle(Messages.WIZARD_NEW_FILE_TITLE);
+	}
 
-/**
- * The constructor.
- */
-public NewASMfile() {
-  super();
-  setWindowTitle("New a ASM File");
-}
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addPages() {
+		super.addPages();
 
-/**
- * {@inheritDoc}
- */
-public void addPages() {
-  super.addPages();
+		page1 = new WizardNewFileCreationPage(
+				Messages.WIZARD_NEW_FILE_PAGE1_TITLE, selection) {
+			protected boolean validatePage() {
+				if (!getFileName().toLowerCase().endsWith(".asm")) {
+					setErrorMessage(Messages.WIZARD_NEW_FILE_PAGE1_INVALID_FILE);
+					return false;
+				}
+				return super.validatePage();
+			}
+		};
+		page1.setTitle(Messages.WIZARD_NEW_FILE_PAGE1_TITLE);
+		page1.setImageDescriptor(Constants.WIZARD_NEW);
+		page1.setDescription(Messages.WIZARD_NEW_PROJECT_DESCRIPTION);
 
-  page1 = new WizardNewFileCreationPage("New a ASM File", selection) {
-    protected boolean validatePage() {
-      if (!getFileName().toLowerCase().endsWith(".asm")) {
-        setErrorMessage("Invalid file name. Must have extension asm. (e.g. test.asm)");
-        return false;
-      }
-      return super.validatePage();
-    }
-  };
-  page1.setTitle("ASM File");
-  page1.setImageDescriptor(Activator.getImageDescriptor("icons/newWizard.gif"));
-  page1.setDescription("New a ASM File");
+		addPage(page1);
 
-  
-  addPage(page1);
+	}
 
-}
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean performFinish() {
 
-/**
- * {@inheritDoc}
- */
-public boolean performFinish() {
- 
-  IFile file = page1.createNewFile();
+		IFile file = page1.createNewFile();
 
-  if (file == null) {
-    return false;
-  }
-  return true;
-}
+		if (file == null) {
+			return false;
+		}
+		return true;
+	}
 
-/**
- * {@inheritDoc}
- */
-public void init(IWorkbench workbench, IStructuredSelection selection) {
-  this.selection = selection;
-}
+	/**
+	 * {@inheritDoc}
+	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		this.selection = selection;
+	}
 }
