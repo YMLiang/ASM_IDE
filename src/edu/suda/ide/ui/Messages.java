@@ -88,6 +88,11 @@ public class Messages {
 	 * The description for the first page in the new ASM project wizard.
 	 */
 	public static String WIZARD_NEW_PROJECT_DESCRIPTION;
+	
+	/**
+	   * Text for error for loading ASM instruction set.
+	   */
+	  public static String LOAD_ASMISET_ERROR;
 
 	// Initialize the constants.
 	static {

@@ -3,12 +3,8 @@ package edu.suda.ide.editor;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
-import org.eclipse.jface.text.source.projection.ProjectionSupport;
-import org.eclipse.jface.text.source.projection.ProjectionViewer;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -28,10 +24,6 @@ public class ASMEditor extends TextEditor {
 		super.initializeEditor();
 		setSourceViewerConfiguration(new ASMSourceViewerConfiguration(this));
 	}
-	
-	protected void initializeKeyBindingScopes() {
-	    setKeyBindingScopes(new String[] { "edu.suda.ide.editorScope" });
-	  }
 
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {

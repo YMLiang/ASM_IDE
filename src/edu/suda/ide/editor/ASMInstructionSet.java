@@ -15,6 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import edu.suda.ide.Activator;
 import edu.suda.ide.ui.Constants;
+import edu.suda.ide.ui.Messages;
 
 /**
  * Load a file of instructions, which are use in the editor
@@ -120,7 +121,7 @@ public final class ASMInstructionSet {
 					.getLog()
 					.log(new Status(Status.ERROR, Constants.PLUGIN_ID,
 							Status.OK,
-							"Error while loading ASM Instruction-Set.", e));
+							Messages.LOAD_ASMISET_ERROR, e));
 		}
 
 		sortedInstructionArray = new String[instructionMap.size()][3];

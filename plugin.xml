@@ -169,13 +169,5 @@
             name="ASM">
       </page>
    </extension>
-   <extension
-         point="org.eclipse.ui.contexts">
-      <context
-            id="edu.suda.ide.editorScope"
-            name="ASM Editor Scope"
-            parentId="org.eclipse.ui.textEditorScope">
-      </context>
-   </extension>
 
 </plugin>
