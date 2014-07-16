@@ -14,7 +14,7 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 	private IWorkbenchAction New, Import, Export, Exit, saveAction,
 			saveAllAction;
 	private IWorkbenchAction Redo, Undo, Copy, Paste, Cut, Find;
-	private IWorkbenchAction showView,preferences;
+	private IWorkbenchAction openPerspective,showQC,preferences;
 	private IWorkbenchAction properties;
 	private IWorkbenchAction HelpContents;
 
@@ -64,8 +64,11 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		properties = ActionFactory.PROPERTIES.create(window);
 		register(properties);
 		
-		showView = ActionFactory.SHOW_VIEW_MENU.create(window);
-		register(showView);
+		openPerspective = ActionFactory.OPEN_PERSPECTIVE_DIALOG.create(window);
+		register(openPerspective);
+		
+		showQC = ActionFactory.SHOW_QUICK_ACCESS.create(window);
+		register(showQC);
 		
 		preferences = ActionFactory.PREFERENCES.create(window);
 		register(preferences);
@@ -111,7 +114,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 		projectMenu.add(properties);
 		
-		windowMenu.add(showView);
+		windowMenu.add(openPerspective);
+		windowMenu.add(showQC);
 		windowMenu.add(preferences);
 
 		helpMenu.add(HelpContents);
