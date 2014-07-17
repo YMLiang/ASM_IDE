@@ -162,12 +162,20 @@
       </editor>
    </extension>
    <extension
+         id="edu.suda.ide.page.asm"
          point="org.eclipse.ui.preferencePages">
       <page
             class="edu.suda.ide.ui.PreferencesGeneral"
             id="edu.suda.ide.page.asm"
             name="ASM">
       </page>
+   </extension>
+    <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="edu.suda.ide.editorScope"
+            name="%context.scope"
+            parentId="org.eclipse.ui.textEditorScope"/>
    </extension>
 
 </plugin>

@@ -19,12 +19,7 @@ import edu.suda.ide.ui.Constants;
  * 
  */
 public class ASMEditor extends TextEditor {
-
-	protected void initializeEditor() {
-		super.initializeEditor();
-		setSourceViewerConfiguration(new ASMSourceViewerConfiguration(this));
-	}
-
+	
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
 		super.init(site, input);
@@ -38,6 +33,11 @@ public class ASMEditor extends TextEditor {
 						Constants.PARTITION_COMMENT });
 		partitioner.connect(document);
 		document.setDocumentPartitioner(partitioner);
+	}
+	
+	protected void initializeEditor() {
+		super.initializeEditor();
+		setSourceViewerConfiguration(new ASMSourceViewerConfiguration(this));
 	}
 
 	/**

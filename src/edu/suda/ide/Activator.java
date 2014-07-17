@@ -28,6 +28,8 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
+		super();
+		plugin = this;
 	}
 
 	/*
@@ -108,24 +110,21 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	protected void initializeDefaultPreferences(IPreferenceStore store) {
-		Display display = Display.getCurrent();
+	    Display display = Display.getCurrent();
 
-		String textAttribute = TextAttributeConverter
-				.textAttributesToPreferenceData(new Color(display, 0, 128, 0),
-						false, false);
-		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_STRING, textAttribute);
+	    String textAttribute = TextAttributeConverter.textAttributesToPreferenceData(new Color(display, 0, 0, 255), false,
+	                                                                                 false);
+	    store.setDefault(Constants.PREFERENCES_TEXTCOLOR_STRING, textAttribute);
 
-		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
-				new Color(display, 139, 0, 255), false, true);
-		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_COMMENT, textAttribute);
+	    textAttribute = TextAttributeConverter.textAttributesToPreferenceData(new Color(display, 0, 128, 0), false, true);
+	    store.setDefault(Constants.PREFERENCES_TEXTCOLOR_COMMENT, textAttribute);
 
-		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
-				new Color(display, 255, 0, 0), true, false);
-		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION,
-				textAttribute);
+	    textAttribute = TextAttributeConverter.textAttributesToPreferenceData(new Color(display, 0, 0, 128), true, false);
+	    store.setDefault(Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION, textAttribute);
 
-		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
-				new Color(display, 128, 64, 0), true, false);
-		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_SEGMENT, textAttribute);
+	    textAttribute = TextAttributeConverter.textAttributesToPreferenceData(new Color(display, 128, 64, 0), true, false);
+	    store.setDefault(Constants.PREFERENCES_TEXTCOLOR_SEGMENT, textAttribute);
+
 	}
+
 }

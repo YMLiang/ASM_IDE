@@ -17,6 +17,8 @@ public class Constants {
 	 * The Plug-in ID.
 	 */
 	public static final String PLUGIN_ID = "edu.suda.ide";
+	
+	
 
 	/**
 	 * The Nature ID.
