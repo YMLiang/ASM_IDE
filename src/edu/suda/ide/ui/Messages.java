@@ -8,7 +8,7 @@ import org.eclipse.osgi.util.NLS;
  * @author YMLiang
  * 
  */
-public class Messages {
+public class Messages extends NLS{
 	/**
 	 * Name of the message bundle.
 	 */

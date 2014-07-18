@@ -4,6 +4,7 @@ Bundle-Name: Ide
 Bundle-SymbolicName: edu.suda.ide;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: edu.suda.ide.Activator
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,

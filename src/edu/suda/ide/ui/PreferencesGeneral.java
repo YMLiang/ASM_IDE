@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.preference.ColorSelector;
+import org.eclipse.jface.preference.IPreferenceNode;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceManager;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -30,6 +32,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.WorkbenchViewerSorter;
 
 import edu.suda.ide.Activator;
@@ -41,6 +44,9 @@ import edu.suda.ide.Activator;
  */
 public class PreferencesGeneral extends PreferencePage implements
 		IWorkbenchPreferencePage {
+	
+	
+	
 
 	/**
 	 * The keys of the overlay store.

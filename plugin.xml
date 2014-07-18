@@ -171,11 +171,10 @@
       </page>
    </extension>
     <extension
-         point="org.eclipse.ui.contexts">
-      <context
-            id="edu.suda.ide.editorScope"
-            name="%context.scope"
-            parentId="org.eclipse.ui.textEditorScope"/>
-   </extension>
+          point="org.eclipse.core.runtime.preferences">
+       <initializer
+             class="edu.suda.ide.ui.PreferencesInitializer">
+       </initializer>
+    </extension>
 
 </plugin>
