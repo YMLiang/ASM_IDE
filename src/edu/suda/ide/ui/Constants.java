@@ -18,8 +18,10 @@ public class Constants {
 	 */
 	public static final String PLUGIN_ID = "edu.suda.ide";
 	
-	
-
+	/**
+	 * The IDE perspective ID.
+	 */
+	public static final String IDE_PERSPECTIVE_ID = PLUGIN_ID + ".perspective.rcp";
 	/**
 	 * The Nature ID.
 	 */

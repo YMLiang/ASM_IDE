@@ -18,6 +18,11 @@
             class="edu.suda.ide.Perspective"
             id="edu.suda.ide.perspective">
       </perspective>
+      <perspective
+            class="edu.suda.ide.ui.PerspectiveIDE"
+            id="edu.suda.ide.perspective.rcp"
+            name="IDE">
+      </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">

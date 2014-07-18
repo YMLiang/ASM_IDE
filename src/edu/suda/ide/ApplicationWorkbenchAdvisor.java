@@ -9,10 +9,11 @@ import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 import org.eclipse.ui.ide.IDE;
 
+
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
-	private static final String PERSPECTIVE_ID = "edu.suda.ide.perspective"; //$NON-NLS-1$
-
+	public static final String PERSPECTIVE_ID = "edu.suda.ide.perspective";
+	
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {
 		return new ApplicationWorkbenchWindowAdvisor(configurer);
